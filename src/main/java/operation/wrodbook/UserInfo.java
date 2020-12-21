@@ -12,6 +12,16 @@ public class UserInfo implements Serializable {
 
     private String date;
 
+    private Double height;
+
+
+    public Double getHeight() {
+        return height;
+    }
+
+    public void setHeight(Double height) {
+        this.height = height;
+    }
 
     public int getId() {
         return id;
@@ -45,11 +55,12 @@ public class UserInfo implements Serializable {
         this.date = date;
     }
 
-    public UserInfo(int id, String name, String addr, String date) {
+    public UserInfo(int id, String name, String addr, String date, Double height) {
         this.id = id;
         this.name = name;
         this.addr = addr;
         this.date = date;
+        this.height = height;
     }
 
 
@@ -59,7 +70,8 @@ public class UserInfo implements Serializable {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", addr='" + addr + '\'' +
-                ", date=" + date +
+                ", date=" + date + '\'' +
+                ", height= " + height +
                 '}';
     }
 
@@ -72,11 +84,12 @@ public class UserInfo implements Serializable {
         return id == userInfo.id &&
                 Objects.equals(name, userInfo.name) &&
                 Objects.equals(addr, userInfo.addr) &&
-                Objects.equals(date, userInfo.date);
+                Objects.equals(date, userInfo.date) &&
+                Objects.equals(height, userInfo.height);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, addr, date);
+        return Objects.hash(id, name, addr, date, height);
     }
 }

@@ -1,5 +1,6 @@
 package operation.wrodbook;
 
+import operation.wrodbook.readExcel.ReadFromExcel;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
@@ -124,17 +125,23 @@ public class OperationExcel {
     public static void main(String[] args) {
 
         OperationExcelFromList operationExcelFromList = new OperationExcelFromList();
+        ReadFromExcel readFromExcel = new ReadFromExcel();
+
+        //写excele
         ArrayList<UserInfo> userInfos = new ArrayList<>();
-        userInfos.add(new UserInfo(1, "abc", "北京", "2020-12-11"));
-        userInfos.add(new UserInfo(2, "mh", "上海", "2020-12-12"));
-        userInfos.add(new UserInfo(3, "lol", "深圳", "2020-12-13"));
-        userInfos.add(new UserInfo(4, "kl", "杭州", "2020-12-14"));
+        userInfos.add(new UserInfo(1, "abc", "北京", " ", 162.1));
+        userInfos.add(new UserInfo(2, "mh", "上海", "2020-12-12", 159.7));
+        userInfos.add(new UserInfo(3, "lol", "深圳", "2020-12-13", 168.0));
+        userInfos.add(new UserInfo(4, "kl", "杭州", "2020-12-14", 166.0));
         operationExcelFromList.ExcelFromList("D:\\\\file\\\\test",userInfos);
-//        try {
-//            createEmptyExcel("D:\\file\\test.xlsx");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+
+
+        //读excel
+        try {
+            readFromExcel.ReadExcel("D:\\\\file\\\\test.xlsx","sheet-1");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

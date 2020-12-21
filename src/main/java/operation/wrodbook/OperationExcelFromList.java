@@ -9,6 +9,7 @@ import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import patten.JudgmentType.*;
 
 import java.io.BufferedOutputStream;
 import java.io.FileNotFoundException;
@@ -18,6 +19,9 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+
+import static patten.JudgmentType.isDouble;
+import static patten.JudgmentType.isInteger;
 
 public class OperationExcelFromList {
     XSSFWorkbook workbook = new XSSFWorkbook();
@@ -72,8 +76,18 @@ public class OperationExcelFromList {
 
                 String fieldsName = headSize[k].getName();
                 //dataRow.setRowStyle(cellStyle);
-                dataRow.createCell(k).setCellValue(getFieldValueByName(fieldsName, userInfo));
 
+                String res = getFieldValueByName(fieldsName, userInfo);
+
+
+
+                if (isInteger(res)) { //判断插入数据是否是整型
+                    dataRow.createCell(k).setCellValue(Integer.parseInt(res));
+                } else if (isDouble(res)) { //判断插入数据是否是浮点型
+                    dataRow.createCell(k).setCellValue(Double.parseDouble(res));
+                } else { //其余类型全部按照字符串插入
+                    dataRow.createCell(k).setCellValue(res);
+                }
             }
         }
 

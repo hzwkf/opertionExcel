@@ -25,12 +25,12 @@ public class SunnyTest {
     public static void main(String[] args) {
         System.out.println("This is a test class");
 //        getXml("D:\\kaifagongju\\hadoop-3.2.0\\etc\\hadoop\\core-site.xml");
-        Map exec = exec("10.128.3.50", "root", "root", 22, "top");
+        Map exec = exec("10.128.3.50", "tss", "tss", 22, "top");
         exec.forEach((key, value) -> {
             System.out.println(key + ":" + value);
         });
 
-        Map openFiles = getOpenFiles("10.128.3.50", "root", "root", 22, "ulimit -a");
+        Map openFiles = getOpenFiles("10.128.3.50", "tss", "tss", 22, "ulimit -a");
         for (Object files: openFiles.entrySet()) {
             System.out.println(files);
         }
